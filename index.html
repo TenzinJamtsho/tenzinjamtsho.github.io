@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tenzin Jamtsho — Automation Engineer</title>
+  <meta name="description" content="Tenzin Jamtsho, Automation Engineer at Fuzzy Automation, Bhutan. Full-stack web development, real-time data pipelines, PostgreSQL, IoT and instrumentation." />
+  <meta property="og:title" content="Tenzin Jamtsho — Automation Engineer" />
+  <meta property="og:description" content="Automation Engineer building metering, property management and water management platforms in Bhutan. Next.js, Node.js, Python, PostgreSQL, MQTT." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0a0a'/><text x='16' y='21' font-family='Arial' font-weight='700' font-size='13' fill='%23f0c44a' text-anchor='middle'>TJ</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --outer: #eeeeec;
+      --paper: #ffffff;
+      --ink: #000000;
+      --text: #222222;
+      --muted: #6b6b6b;
+      --line: #e6e6e6;
+      --mustard: #f0c44a;
+      --mustard-soft: #fdf4d6;
+      --cond: "Barlow Condensed", "Arial Narrow", sans-serif;
+      --sans: "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--outer);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 3px; }
+    img { max-width: 100%; display: block; }
+
+    /* top bar */
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .topbar-inner {
+      max-width: 1000px; margin: 0 auto; padding: 10px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--cond); font-weight: 600; font-size: 17px; letter-spacing: .02em; }
+    .brand-mark { width: 30px; height: 30px; border-radius: 7px; background: var(--ink); color: var(--mustard); display: grid; place-items: center; font-size: 13px; font-weight: 700; }
+    .topbar-cta { font-size: 13px; font-weight: 500; text-decoration: none; padding: 7px 14px; border-radius: 999px; background: var(--ink); color: #fff; }
+
+    /* paper */
+    .page { max-width: 1000px; margin: 0 auto; padding: 36px 20px 48px; }
+    .paper {
+      background: var(--paper);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px -30px rgba(0,0,0,.25);
+      animation: rise .7s ease-out both;
+    }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+    /* header */
+    .head { display: grid; grid-template-columns: 280px 1fr; }
+    .head-left { position: relative; }
+    .photo {
+      aspect-ratio: 4 / 4.3;
+      background: #d9d9d6;
+      display: grid; place-items: center;
+      overflow: hidden;
+    }
+    .photo img { width: 100%; height: 100%; object-fit: cover; }
+    .photo .initials { font-family: var(--cond); font-weight: 800; font-size: 96px; color: #fff; letter-spacing: .02em; }
+    .ribbon {
+      background: var(--mustard);
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 24px;
+    }
+    .ribbon-num { font-family: var(--cond); font-weight: 800; font-size: 64px; line-height: .9; color: var(--ink); }
+    .ribbon-num span { font-size: 38px; vertical-align: top; }
+    .ribbon-text { font-family: var(--cond); font-weight: 600; font-size: 15px; line-height: 1.15; letter-spacing: .06em; color: var(--ink); }
+
+    .head-right { padding: 48px 48px 36px; display: flex; flex-direction: column; justify-content: center; }
+    .name {
+      font-family: var(--cond); font-weight: 800;
+      font-size: clamp(56px, 8vw, 92px);
+      line-height: .88; letter-spacing: .005em;
+      color: var(--ink); margin: 0;
+      text-transform: uppercase;
+    }
+    .name span { display: block; }
+    .role { margin: 18px 0 20px; font-size: 17px; font-weight: 500; color: var(--ink); }
+    .meta { display: grid; gap: 6px; font-size: 14px; color: var(--muted); }
+    .meta a { text-decoration: none; border-bottom: 1px solid var(--line); }
+    .meta a:hover { color: var(--ink); border-color: var(--ink); }
+    .typed-line { margin-top: 14px; font-size: 14px; color: var(--ink); min-height: 1.6em; }
+    .typed-line .caret { display: inline-block; width: 2px; height: 1.05em; background: var(--mustard); vertical-align: -2px; margin-left: 2px; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* body */
+    .body { display: grid; grid-template-columns: 1fr 300px; border-top: 1px solid var(--line); }
+    .col-left { padding: 40px 44px 44px 48px; border-right: 1px solid var(--line); }
+    .col-right { padding: 40px 36px 44px; background: #fcfcfb; }
+    .sec + .sec { margin-top: 40px; }
+    .sec-heading {
+      font-family: var(--cond); font-weight: 700; font-size: 26px;
+      color: var(--ink); margin: 0 0 16px; line-height: 1.1;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sec-heading::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+    .summary { position: relative; padding-left: 34px; margin: 0; max-width: 62ch; }
+    .summary::before {
+      content: "\201D"; position: absolute; left: 0; top: -14px;
+      font-family: Georgia, serif; font-size: 64px; line-height: 1; color: var(--mustard);
+    }
+
+    /* timeline */
+    .timeline { position: relative; padding-left: 22px; }
+    .timeline::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+    .item { position: relative; }
+    .item + .item { margin-top: 28px; }
+    .item::before {
+      content: ""; position: absolute; left: -22px; top: 7px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--mustard); box-shadow: 0 0 0 3px #fff;
+    }
+    .item-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 16px; }
+    .item h3 { font-family: var(--cond); font-weight: 700; font-size: 21px; line-height: 1.2; color: var(--ink); margin: 0; }
+    .date { font-size: 13px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+    .org { margin: 2px 0 10px; font-size: 14px; color: var(--muted); }
+
+    .project { margin-top: 16px; }
+    .project h4 { font-size: 15px; font-weight: 700; color: var(--ink); margin: 0 0 6px; }
+    .project h4 small { font-weight: 400; color: var(--muted); font-size: 13px; }
+    ul.points { margin: 0; padding-left: 18px; }
+    ul.points li { margin: 3px 0; }
+    ul.points li::marker { color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .tags span { font-size: 12px; padding: 2px 9px; border-radius: 4px; background: var(--mustard-soft); color: #5a4708; }
+
+    .edu .item h3 { font-size: 19px; }
+
+    /* right column */
+    .reach p { margin: 0 0 6px; font-size: 14px; overflow-wrap: anywhere; }
+    .reach .label { display: inline-block; width: 18px; font-weight: 700; color: var(--ink); }
+    .reach a { text-decoration: none; }
+    .reach a:hover { text-decoration: underline; }
+    .note { font-size: 13px; color: var(--muted); margin: 12px 0 16px !important; }
+    .btn {
+      display: flex; justify-content: center; align-items: center;
+      padding: 11px 16px; border-radius: 999px;
+      background: var(--mustard); color: var(--ink);
+      font-weight: 700; font-size: 14px; letter-spacing: .03em; text-decoration: none;
+      transition: background .15s;
+    }
+    .btn:hover { background: #e6b634; }
+
+    .skill-block + .skill-block { margin-top: 18px; }
+    .skill-block h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin: 0 0 8px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pills span { font-size: 12.5px; padding: 3px 10px; border: 1px solid #dcdcdc; border-radius: 999px; background: #fff; }
+
+    ul.soft { list-style: none; margin: 0; padding: 0; }
+    ul.soft li { padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+    ul.soft li:last-child { border-bottom: 0; }
+
+    .paper-foot {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px;
+      padding: 14px 48px; border-top: 1px solid var(--line);
+      font-size: 12px; color: var(--muted);
+    }
+
+    .site-foot { max-width: 1000px; margin: 0 auto; padding: 0 20px 36px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--muted); }
+    .site-foot a { text-decoration: none; margin-left: 14px; }
+    .site-foot a:hover { color: var(--ink); }
+
+    /* responsive */
+    @media (max-width: 860px) {
+      .body { grid-template-columns: 1fr; }
+      .col-left { border-right: 0; padding: 32px 28px; }
+      .col-right { border-top: 1px solid var(--line); padding: 32px 28px; }
+    }
+    @media (max-width: 680px) {
+      .page { padding: 18px 12px 32px; }
+      .paper { border-radius: 18px; }
+      .head { grid-template-columns: 1fr; }
+      .head-left { display: grid; grid-template-columns: 140px 1fr; }
+      .photo { aspect-ratio: auto; height: 100%; min-height: 150px; }
+      .photo .initials { font-size: 56px; }
+      .ribbon { flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; }
+      .head-right { padding: 28px 24px 26px; }
+      .paper-foot { padding: 14px 24px; }
+      .site-foot a { margin: 0 14px 0 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .paper { animation: none; }
+      .typed-line .caret { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#top" class="brand"><span class="brand-mark">TJ</span> Tenzin Jamtsho</a>
+      <a href="mailto:tnznjamtsho@gmail.com" class="topbar-cta">Email me</a>
+    </div>
+  </header>
+
+  <main id="top" class="page">
+    <article class="paper">
+
+      <header class="head">
+        <div class="head-left">
+          <div class="photo">
+            <!-- Put your photo at assets/img/profile.jpg. Until then, initials show instead. -->
+            <img src="assets/img/profile.jpg" alt="Tenzin Jamtsho"
+                 onerror="this.remove(); document.querySelector('.photo').insertAdjacentHTML('beforeend','<span class=&quot;initials&quot;>TJ</span>')" />
+          </div>
+          <div class="ribbon">
+            <div class="ribbon-num">3<span>+</span></div>
+            <div class="ribbon-text">YEARS OF<br />PROFESSIONAL<br />EXPERIENCE</div>
+          </div>
+        </div>
+
+        <div class="head-right">
+          <h1 class="name"><span>Tenzin</span><span>Jamtsho</span></h1>
+          <p class="role">Automation Engineer, Fuzzy Automation</p>
+          <div class="meta">
+            <span><a href="mailto:tnznjamtsho@gmail.com">tnznjamtsho@gmail.com</a></span>
+            <span><a href="tel:+97577495618">+975 77495618</a></span>
+            <span>Bhutan</span>
+          </div>
+          <div class="typed-line" aria-hidden="true"><span id="typed"></span><span class="caret"></span></div>
+        </div>
+      </header>
+
+      <div class="body">
+        <div class="col-left">
+
+          <section class="sec">
+            <h2 class="sec-heading">Profile</h2>
+            <p class="summary">
+              Automation Engineer with hands-on experience in instrumentation and full-stack web development.
+              I work on real-time data pipelines and integration, dashboard design, operational analytics platforms
+              and backend systems. My technical skills, including programming, data analytics,
+              DevOps practices and system optimisation.
+            </p>
+          </section>
+
+          <section class="sec">
+            <h2 class="sec-heading">Experience</h2>
+            <div class="timeline">
+
+              <div class="item">
+                <div class="item-top">
+                  <h3>Automation Engineer</h3>
+                  <span class="date">Jul 2023 – Present</span>
+                </div>
+                <p class="org">Fuzzy Automation, Bhutan</p>
+
+                <div class="project">
+                  <h4>Advanced Metering Infrastructure (AMI)</h4>
+                  <ul class="points">
+                    <li>Worked across the full stack of the AMI platform, on both the backend and the user interfaces.</li>
+                    <li>Built communication systems for remote monitoring of 5,000+ metering devices across multiple locations in Bhutan.</li>
+                    <li>Wrote API endpoints and microservice modules in Python and JavaScript for real-time meter data collection and operational analytics.</li>
+                    <li>Designed high-performance PostgreSQL solutions for instrumentation monitoring, reliability indices and outage analytics.</li>
+                    <li>Debugged and improved system performance so electrical parameters are logged accurately.</li>
+                    <li>Worked with senior developers to bring field instrumentation data into centralised software platforms.</li>
+                  </ul>
+                  <div class="tags"><span>Python</span><span>JavaScript</span><span>PostgreSQL</span><span>Microservices</span><span>MQTT</span></div>
+                </div>
+
+                <div class="project">
+                  <h4>Property Management System <small>for Legphel Hotel, Phuntsholing</small></h4>
+                  <ul class="points">
+                    <li>Developed a hotel property management system from front end to database.</li>
+                    <li>Built with Next.js and Tailwind CSS on the front end and Node.js/Express on the back end, using a strict layered architecture for clean separation of concerns.</li>
+                    <li>Designed the PostgreSQL database with Sequelize ORM.</li>
+                    <li>Helped with deployment pipelines and post-release maintenance.</li>
+                  </ul>
+                  <div class="tags"><span>Next.js</span><span>Tailwind CSS</span><span>Node.js</span><span>Express</span><span>Sequelize</span></div>
+                </div>
+
+                <div class="project">
+                  <h4>Water Management System <small>internal prototype</small></h4>
+                  <ul class="points">
+                    <li>Built proof-of-concept modules for data processing, visualisation dashboards and operational reporting in Python and JavaScript.</li>
+                    <li>Helped design the database and automation logic for tracking water usage.</li>
+                    <li>Worked on engineering workflows aimed at future large-scale deployment.</li>
+                  </ul>
+                  <div class="tags"><span>Dashboards</span><span>Data processing</span><span>Reporting</span></div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="item-top">
+                  <h3>Intern</h3>
+                  <span class="date">Dec 2021 – Jan 2022</span>
+                </div>
+                <p class="org">Drukair Corporation Ltd., Paro</p>
+                <ul class="points">
+                  <li>Trained on aircraft automation and control systems.</li>
+                  <li>Learned troubleshooting for avionics instrumentation and onboard automated components.</li>
+                  <li>Assisted engineers with maintenance diagnostics and system testing.</li>
+                  <li>Got hands-on exposure to real-time monitoring and fault-finding in safety-critical aviation systems.</li>
+                </ul>
+                <div class="tags"><span>Avionics</span><span>Diagnostics</span><span>Control systems</span></div>
+              </div>
+
+            </div>
+          </section>
+
+          <section class="sec edu">
+            <h2 class="sec-heading">Education</h2>
+            <div class="timeline">
+              <div class="item">
+                <div class="item-top">
+                  <h3>B.E. in Instrumentation and Control</h3>
+                  <span class="date">2019 – 2023</span>
+                </div>
+                <p class="org">College of Science and Technology, Royal University of Bhutan</p>
+              </div>
+              <div class="item">
+                <div class="item-top">
+                  <h3>Grade 12</h3>
+                  <span class="date">2017 – 2018</span>
+                </div>
+                <p class="org">Motithang Higher Secondary School</p>
+              </div>
+              <div class="item">
+                <div class="item-top">
+                  <h3>Grade 10</h3>
+                  <span class="date">2015 – 2016</span>
+                </div>
+                <p class="org">Khangkhu Middle Secondary School</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <aside class="col-right">
+
+          <section class="sec reach">
+            <h2 class="sec-heading">Reach me</h2>
+            <p><span class="label">E</span> <a href="mailto:tnznjamtsho@gmail.com">tnznjamtsho@gmail.com</a></p>
+            <p><span class="label">P</span> <a href="tel:+97577495618">+975 77495618</a></p>
+            <p class="note">Open to full-stack, automation and IoT roles.</p>
+            <a class="btn" href="mailto:tnznjamtsho@gmail.com">Send an email</a>
+          </section>
+
+          <section class="sec">
+            <h2 class="sec-heading">Skills</h2>
+            <div class="skill-block">
+              <h4>Languages</h4>
+              <div class="pills"><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>SQL</span><span>Bash</span></div>
+            </div>
+            <div class="skill-block">
+              <h4>Web stack</h4>
+              <div class="pills"><span>React</span><span>Next.js</span><span>Node.js</span><span>Express</span><span>REST APIs</span><span>Tailwind CSS</span><span>Responsive UI</span></div>
+            </div>
+            <div class="skill-block">
+              <h4>Databases</h4>
+              <div class="pills"><span>PostgreSQL</span><span>SQLite</span><span>PL/pgSQL</span><span>Query optimisation</span></div>
+            </div>
+            <div class="skill-block">
+              <h4>Automation &amp; integration</h4>
+              <div class="pills"><span>Real-time pipelines</span><span>MQTT</span><span>Protocol integration</span><span>Data logging</span><span>Monitoring</span></div>
+            </div>
+            <div class="skill-block">
+              <h4>DevOps</h4>
+              <div class="pills"><span>Docker</span><span>Git/GitHub</span><span>Linux admin</span><span>Remote deployment</span><span>Networking</span></div>
+            </div>
+            <div class="skill-block">
+              <h4>IoT &amp; embedded</h4>
+              <div class="pills"><span>ESP32</span><span>Raspberry Pi</span><span>Arduino</span><span>SCADA</span></div>
+            </div>
+          </section>
+
+          <section class="sec">
+            <h2 class="sec-heading">Soft skills</h2>
+            <ul class="soft">
+              <li>Leadership and team management</li>
+              <li>Analytical problem solving</li>
+              <li>Clear verbal and written communication</li>
+              <li>Works well in teams and independently</li>
+            </ul>
+          </section>
+
+        </aside>
+      </div>
+
+      <div class="paper-foot">
+        <span>© <span class="year"></span> Tenzin Jamtsho</span>
+        <span>Automation Engineer, Bhutan</span>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <span>© <span class="year"></span> Tenzin Jamtsho</span>
+    <span>
+      <a href="mailto:tnznjamtsho@gmail.com">Email</a>
+      <a href="#top">Back to top</a>
+    </span>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".year").forEach(e => e.textContent = new Date().getFullYear());
+
+    // Small typing effect (no library needed)
+    (function () {
+      const el = document.getElementById("typed");
+      const items = [
+        "Full-stack web development",
+        "Real-time data pipelines",
+        "PostgreSQL and PL/pgSQL",
+        "MQTT and IoT integration",
+        "Docker and Linux deployment"
+      ];
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        el.textContent = items.join(", ");
+        return;
+      }
+      let i = 0, j = 0, deleting = false;
+      function tick() {
+        const word = items[i];
+        el.textContent = word.slice(0, j);
+        if (!deleting && j === word.length) { deleting = true; return setTimeout(tick, 1600); }
+        if (deleting && j === 0) { deleting = false; i = (i + 1) % items.length; }
+        j += deleting ? -1 : 1;
+        setTimeout(tick, deleting ? 35 : 70);
+      }
+      tick();
+    })();
+  </script>
+</body>
+</html>
